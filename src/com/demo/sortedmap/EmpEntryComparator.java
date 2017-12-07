@@ -5,9 +5,10 @@ import java.util.Map.Entry;
 
 public class EmpEntryComparator implements Comparator<Entry<Object, Employee>> {
 	boolean keepDuplicate;
+	boolean reverse;
 
 	/**
-	 * By default duplicacy is allowed while sorting. Use parameterized contractor
+	 * By default duplicacy is allowed while sorting. Use parameterized constructor
 	 * to control over duplicacy.
 	 */
 	public EmpEntryComparator() {
@@ -17,11 +18,25 @@ public class EmpEntryComparator implements Comparator<Entry<Object, Employee>> {
 	/**
 	 * @param keepDuplicate
 	 *            is to indicate if need to keep the duplicate values in sorted set
-	 *            because that value is not duplicate in @Map as @HashMap compares
-	 *            Keys to check duplicacy.
+	 *            because that value is not duplicate in {@code}Map as
+	 *            {@code}HashMap compares Keys to check duplicacy.
 	 */
 	public EmpEntryComparator(boolean keepDuplicate) {
+		this(keepDuplicate, false);
+	}
+
+	/**
+	 * @param keepDuplicate
+	 *            is to indicate if need to keep the duplicate values in sorted set
+	 *            because that value is not duplicate in {@code}Map as
+	 *            {@code}HashMap compares Keys to check duplicacy.
+	 * @param reverse
+	 *            is the indicator which can set set to {@literal}true if sorting is
+	 *            to be done in descending order.
+	 */
+	public EmpEntryComparator(boolean keepDuplicate, boolean reverse) {
 		this.keepDuplicate = keepDuplicate;
+		this.reverse = reverse;
 	}
 
 	/**
@@ -66,6 +81,7 @@ public class EmpEntryComparator implements Comparator<Entry<Object, Employee>> {
 				}
 			}
 		}
+		retVal = reverse ? -retVal : retVal;
 		return keepDuplicate ? (retVal == 0 ? -1 : retVal) : retVal;
 	}
 }

@@ -33,7 +33,10 @@ public class Test {
 		System.out.println(map);
 
 		Set<Entry<Object, Employee>> values = map.entrySet();
-		SortedSet<Entry<Object, Employee>> treeSet = new TreeSet<Entry<Object, Employee>>(new EmpEntryComparator(true));
+		
+		EmpEntryComparator myComparator = new EmpEntryComparator(true, true);
+		
+		SortedSet<Entry<Object, Employee>> treeSet = new TreeSet<Entry<Object, Employee>>(myComparator);
 
 		treeSet.addAll(values);
 
