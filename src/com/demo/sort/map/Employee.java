@@ -1,4 +1,4 @@
-package com.demo.sortedmap;
+package com.demo.sort.map;
 
 public class Employee {
 	private Integer id;

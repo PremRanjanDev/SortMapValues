@@ -1,15 +1,15 @@
-package com.demo.sortedmap;
+package com.demo.sort.map;
 
 import java.util.Comparator;
 import java.util.Map.Entry;
 
 public class EmpEntryComparator implements Comparator<Entry<Object, Employee>> {
-	boolean keepDuplicate;
-	boolean reverse;
+	private boolean keepDuplicate;
+	private boolean reverse;
 
 	/**
-	 * By default duplicacy is allowed while sorting. Use parameterized constructor
-	 * to control over duplicacy.
+	 * By default duplicacy is allowed while sorting. Use parameterized constructors
+	 * to control over duplicacy and sorting order.
 	 */
 	public EmpEntryComparator() {
 		this(true);
@@ -81,7 +81,7 @@ public class EmpEntryComparator implements Comparator<Entry<Object, Employee>> {
 				}
 			}
 		}
-		retVal = reverse ? -retVal : retVal;
-		return keepDuplicate ? (retVal == 0 ? -1 : retVal) : retVal;
+		retVal = this.reverse ? -retVal : retVal;
+		return this.keepDuplicate ? (retVal == 0 ? -1 : retVal) : retVal;
 	}
 }

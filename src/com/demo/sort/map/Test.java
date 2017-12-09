@@ -1,5 +1,6 @@
-package com.demo.sortedmap;
+package com.demo.sort.map;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,7 +13,7 @@ public class Test {
 	/**
 	 * Demo of sorting @HashMap values based on values's one property. Ex: The
 	 * entries in map with Key as Object and Value as @Employee. The sorting of
-	 * entries will be based on name of @Employee
+	 * entries/employees will be based on name of @Employee
 	 */
 
 	public static void main(String[] args) {
@@ -29,18 +30,39 @@ public class Test {
 		map.put(6, new Employee());
 		map.put(-10, new Employee(7, "C"));
 
-		System.out.println("Before sort");
+		System.out.println("Map");
 		System.out.println(map);
 
+		/**
+		 * Scenario 1: Get all sorted entries in map based on employee's name.
+		 */
+
 		Set<Entry<Object, Employee>> values = map.entrySet();
-		
-		EmpEntryComparator myComparator = new EmpEntryComparator(true, true);
-		
-		SortedSet<Entry<Object, Employee>> treeSet = new TreeSet<Entry<Object, Employee>>(myComparator);
+
+		EmpEntryComparator entryComparator = new EmpEntryComparator(true, true);
+
+		SortedSet<Entry<Object, Employee>> treeSet = new TreeSet<Entry<Object, Employee>>(entryComparator);
 
 		treeSet.addAll(values);
 
-		System.out.println("After sort");
+		System.out.println("Sorted Entries");
 		System.out.println(treeSet);
+
+		/** End of Scenario 1 */
+
+		/**
+		 * Scenario 2: Get sorted list of all employees in map based on their names.
+		 */
+		Collection<Employee> emps = map.values();
+		EmpComparator empComparator = new EmpComparator(true, false);
+
+		SortedSet<Employee> sortedEmp = new TreeSet<Employee>(empComparator);
+
+		sortedEmp.addAll(emps);
+
+		System.out.println("Sorted Employees");
+		System.out.println(sortedEmp);
+
+		/** End of Scenario 2 */
 	}
 }
